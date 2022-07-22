@@ -32,5 +32,19 @@ Start server:
 npm start
 ```
 
+Example API Request Body:
+```
+{
+    "accountId": 1,
+     "tickets": {
+        "adults": 0,
+        "childrens": 1,
+        "infants": 19
+     }
+}
+```
 
-
+API Endpoint:
+```
+http://localhost:3000/purchase
+```
