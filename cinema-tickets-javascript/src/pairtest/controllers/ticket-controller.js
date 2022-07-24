@@ -4,13 +4,12 @@ const TicketTypeRequest = require('../lib/TicketTypeRequest');
 const TicketRequest = require('../lib/TicketRequest');
 const engine = require('../lib/ticket-rules');
 
-const validatePurchaseTicketsRequest = async (adultTickets, accountId, totalTickets) => {
-  await engine().run({  
+const validatePurchaseTicketsRequest = (adultTickets, accountId, totalTickets) => {
+  return engine().run({  
     maxTicketsCheck: totalTickets,
     minAdultTicketCheck: adultTickets,
     sufficientFundsCheck: accountId
   });
-  return;
 };
 
 const purchaseTickets = async (req, res, next) => {

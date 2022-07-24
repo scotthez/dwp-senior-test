@@ -8,7 +8,7 @@ require('../../src/pairtest/routes/tickets')(mockRouter);
 
 describe('Testing routes', () => {
   const expectedPOSTRoutes = 1;
-  it(`Should set up ${expectedPOSTRoutes} GET routes`, () => {
+  it(`Should set up ${expectedPOSTRoutes} POST routes`, () => {
     sinon.assert.callCount(mockRouter.post, 1);
   });
 });
