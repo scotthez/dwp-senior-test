@@ -13,13 +13,13 @@ const validatePurchaseTicketsRequest = (adultTickets, accountId, totalTickets) =
 };
 
 const purchaseTickets = async (req, res, next) => {
-  const { tickets, accountId } = req.body
+  const { tickets, accountId } = req.body;
 
   try { 
       if (!Number.isInteger(tickets.infants)) tickets.infants = 0; 
       if (!Number.isInteger(tickets.childrens)) tickets.childrens = 0;
 
-      const ticketRequest = new TicketRequest()
+      const ticketRequest = new TicketRequest();
       ticketRequest.addTickets([
         new TicketTypeRequest('ADULT', tickets.adults),
         new TicketTypeRequest('CHILD', tickets.childrens),

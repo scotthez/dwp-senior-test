@@ -49,13 +49,6 @@ describe("Schema Validation Tests", () => {
     sandbox.assert.calledWith(next, sandbox.match(expectedErr));
   });
 
-  it(`Test return 404 when tickets.adults is not > 0`, async () => {
-    req = mockRequest({ body: { accountId: 1, tickets: { adults: 0} } });
-    validatePurchaseTicketInputs(req, res, next);
-    const expectedErr = sandbox.match.instanceOf(BadRequestError).and(sandbox.match.has('message', 'Validation Error'))
-    sandbox.assert.calledWith(next, sandbox.match(expectedErr));
-  });
-
   it(`Test return 404 when tickets.adults is not present`, async () => {
     req = mockRequest({ body: { accountId: 1, tickets: { } } });
     validatePurchaseTicketInputs(req, res, next);
