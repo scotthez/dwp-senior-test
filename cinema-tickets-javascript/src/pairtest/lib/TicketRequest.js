@@ -4,8 +4,7 @@ const InternalServerError = require("./errors/InternalServerError");
 const OrderRequest = require("./OrderRequest");
 const TicketTypeRequest = require("./TicketTypeRequest");
 
-/*  Immutable Object */
-class TicketRequest extends OrderRequest{
+class TicketRequest extends OrderRequest {
   #totalNoOfTickets;
 
   constructor() {

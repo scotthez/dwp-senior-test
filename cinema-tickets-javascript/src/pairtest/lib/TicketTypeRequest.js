@@ -17,7 +17,7 @@ class TicketTypeRequest {
     this.#noOfTickets = noOfTickets;
     this.#cost = Number(this.#Prices[type]) * noOfTickets;
 
-    Object.seal(this);
+    Object.freeze(this);
   }
 
   get noOfTickets() {

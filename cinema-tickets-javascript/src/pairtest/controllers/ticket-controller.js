@@ -4,11 +4,13 @@ const TicketTypeRequest = require('../lib/TicketTypeRequest');
 const TicketRequest = require('../lib/TicketRequest');
 const engine = require('../lib/ticket-rules');
 
-const validatePurchaseTicketsRequest = (adultTickets, accountId, totalTickets) => {
+const validatePurchaseTicketsRequest = (tickets, accountId, totalTickets) => {
   return engine().run({  
+    minTicketsCheck: totalTickets,
     maxTicketsCheck: totalTickets,
-    minAdultTicketCheck: adultTickets,
-    sufficientFundsCheck: accountId
+    minAdultTicketCheck: tickets.adults,
+    sufficientFundsCheck: accountId,
+    sufficientAdultsCheck: tickets.adults >= tickets.infants
   });
 };
 
@@ -28,7 +30,7 @@ const purchaseTickets = async (req, res, next) => {
 
       const seatService = new SeatService();
       
-      await validatePurchaseTicketsRequest(tickets.adults, accountId, ticketRequest.totalNoOfTickets);
+      await validatePurchaseTicketsRequest(tickets, accountId, ticketRequest.totalNoOfTickets);
       const totalSeats = tickets.adults + tickets.childrens;
       await seatService.reserveSeats(accountId, totalSeats);
       await TicketService.purchaseTickets(accountId, ticketRequest.totalCost);
